@@ -11,17 +11,17 @@ class Minesweeper
     display_board = @game.board.map do |row|
       row.map do |tile|
         if tile.flagged
-          tile = :F
+          tile = :FFF
         elsif tile.revealed
           if tile.bombed
-            tile = :B
+            tile = :BBB
           elsif tile.bomb_adjacent?
             tile = tile.neighbor_bomb_count.to_s.to_sym
           else
-            :_
+            :___
           end
         else
-          tile = :*
+          tile = :xxx
         end
       end
     end
@@ -35,15 +35,15 @@ class Minesweeper
     x = gets.chomp
     y = gets.chomp
 
-    coord = [x,y]
+    coords = [x,y]
 
     puts "REVEAL or FLAG?"
     choice = gets.chomp.downcase
 
     if choice == "reveal"
-      @game.board.reveal(coord)
+      @game.board.reveal(coords) unless @game.board.tile(coords).bombed
     else
-      @game.board.flag(coord)
+      @game.board.flag(coords)
     end
 
   end
@@ -107,6 +107,7 @@ class Board
   end
 
   def tile(coords)
+    p @board[coords.last] == nil
     @board[coords.last][coords.first]
   end
 
@@ -118,39 +119,41 @@ class Board
     end
   end
 
-  def reveal(coords)
-    self.board[coords[1]][coords[0]].revealed = true
+  def reveal(coords,all_seen_tiles = [])
+    # self.board[coords[1]][coords[0]].revealed = true
+#
+#     queue = [self.board[coords[1]][coords[0]]]
+#
+#     all_seen_tiles = []
+#
+#     until queue.empty?
+#       current = queue.shift
+#
+#       if current.bomb_adjacent? || current.flag_adjacent?
+#         current.revealed = true
+#         all_seen_tiles << current
+#         p all_seen_tiles
+#       else
+#         current.revealed = true
+#         all_seen_tiles << current
+#         p all_seen_tiles
+#         queue += current.neighbors.select { |tile| !all_seen_tiles.include?(tile) }
+#       end
+#     end
 
-    queue = [self.board[coords[1]][coords[0]]]
+    current_tile = @board[coords[1]][coords[0]]
 
-    all_seen_tiles = []
-
-    until queue.empty?
-      current = queue.shift
-
-      if current.bomb_adjacent? || current.flag_adjacent?
-        current.revealed = true
-        all_seen_tiles << current
-      else
-        current.revealed = true
-        all_seen_tiles << current
-        queue += current.neighbors.select { |tile| !all_seen_tiles.include?(tile) }
+    if current_tile.bomb_adjacent? || current_tile.flag_adjacent?
+      current_tile.revealed = true
+      all_seen_tiles << current_tile
+      return
+    else
+      current_tile.revealed = true
+      all_seen_tiles << current_tile
+      current_tile.neighbors.each do |neighbor|
+        reveal(neighbor.coords,all_seen_tiles)
       end
     end
-
-
-    # @board[coords[1]][coords[0]].revealed = true
-  #
-  #   current_tile = @board[coords[1]][coords[0]]
-  #
-  #   if current_tile.bomb_adjacent?
-  #     p "found adjacent bomb"
-  #     return
-  #   else
-  #     current_tile.neighbors.each do |neighbor|
-  #       reveal(neighbor.coords)
-  #     end
-  #   end
   end
 
   def flag(coords)
@@ -191,7 +194,7 @@ class Tile
       my_neighbors << [(self.coords.first - neighbor.first), (self.coords.last - neighbor.last)]
     end
 
-    my_neighbors.select { |coord| coord.none? { |num| num > 9 || num < 0 }}
+    my_neighbors.select! { |coord| coord.none? { |num| num > 8 || num < 0 }}
 
     my_neighbors = my_neighbors.map { |coord| self.board.tile(coord) }
   end
