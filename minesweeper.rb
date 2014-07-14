@@ -27,11 +27,16 @@ end
 
 class Tile
 
-  attr_accessor :bombed?, :flagged?, :revealed?
+  attr_accessor :bombed, :flag, :reveal
 
   def initialize(board, coords)
     @coords = coords
     @board = board
+    @revealed = false
+    @flagged = false
+    @bombed = false
+    a = [1,2,3,4].sample
+    @bombed = true if a == 1
   end
 
   NEIGHBOR = [[1,1],
@@ -45,8 +50,16 @@ class Tile
             ]
 
   def reveal
-    revealed? = true
+    @revealed = true
   end
+
+  def flag
+    @flagged = true
+  end
+
+  # def bomb
+#     #@bomb = true
+#   end
 
   def neighbors
     my_neighbors = []
