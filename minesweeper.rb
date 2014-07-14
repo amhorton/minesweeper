@@ -1,3 +1,5 @@
+require 'yaml'
+
 class Minesweeper
 
   attr_reader :game
@@ -31,9 +33,13 @@ class Minesweeper
   end
 
   def make_move
-    puts "Please enter X coordinate and then Y coordinate: "
-    x = gets.chomp
-    y = gets.chomp
+    puts "Would you like to save? (y/n)"
+    if gets.chomp.downcase == y
+      self.to_ya
+
+    puts "Please enter X coordinate and then Y coordinate"
+    x = gets.chomp.to_i
+    y = gets.chomp.to_i
 
     coords = [x,y]
 
@@ -41,9 +47,9 @@ class Minesweeper
     choice = gets.chomp.downcase
 
     if choice == "reveal"
-      @game.board.reveal(coords) unless @game.board.tile(coords).bombed
+      @game.reveal(coords)
     else
-      @game.board.flag(coords)
+      @game.flag(coords)
     end
 
   end
@@ -63,6 +69,7 @@ class Minesweeper
   end
 
   def lost?
+
     lost = false
 
     @game.board.each do |row|
@@ -78,16 +85,21 @@ class Minesweeper
 
   def play
 
+    until won? || lost?
+      display
+      make_move
+    end
 
+    if won?
+      puts "You win!"
+    end
 
+    if lost?
+      puts "You lose :("
+    end
 
-
-
-
-
+    nil
   end
-
-
 
 end
 
@@ -123,7 +135,7 @@ class Board
 
       current = queue.shift
 
-      if current.bomb_adjacent? || current.flag_adjacent?
+      if current.bomb_adjacent? || current.flag_adjacent? || current.bombed
         current.revealed = true
         all_seen_tiles << current
       else
@@ -153,8 +165,8 @@ class Tile
     @revealed = false
     @flagged = false
     @bombed = false
-    a = [1,2,3,4,5,6,7,8].sample
-    @bombed = true if a == 6
+    #a = [1,2,3,4,5,6,7,8].sample
+    @bombed = true if coords == [0,0]
   end
 
   NEIGHBOR_COORDS = [[1,1],
@@ -202,8 +214,6 @@ end
 
 our_game = Minesweeper.new
 
-our_game.game.reveal([4,4])
-
-our_game.display
+our_game.play
 
 #p our_game.game.tile([4,5]).neighbor_bomb_count
