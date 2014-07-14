@@ -14,7 +14,7 @@ game: &1 !ruby/object:Board
       - 1
       - 0
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -22,7 +22,7 @@ game: &1 !ruby/object:Board
       - 2
       - 0
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -30,7 +30,7 @@ game: &1 !ruby/object:Board
       - 3
       - 0
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -38,7 +38,7 @@ game: &1 !ruby/object:Board
       - 4
       - 0
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -46,7 +46,7 @@ game: &1 !ruby/object:Board
       - 5
       - 0
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -54,7 +54,7 @@ game: &1 !ruby/object:Board
       - 6
       - 0
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -62,7 +62,7 @@ game: &1 !ruby/object:Board
       - 7
       - 0
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -70,7 +70,7 @@ game: &1 !ruby/object:Board
       - 8
       - 0
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
   - - !ruby/object:Tile
@@ -78,7 +78,7 @@ game: &1 !ruby/object:Board
       - 0
       - 1
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -86,7 +86,7 @@ game: &1 !ruby/object:Board
       - 1
       - 1
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -94,7 +94,7 @@ game: &1 !ruby/object:Board
       - 2
       - 1
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -102,7 +102,7 @@ game: &1 !ruby/object:Board
       - 3
       - 1
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -110,7 +110,7 @@ game: &1 !ruby/object:Board
       - 4
       - 1
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -118,7 +118,7 @@ game: &1 !ruby/object:Board
       - 5
       - 1
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -126,7 +126,7 @@ game: &1 !ruby/object:Board
       - 6
       - 1
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -134,7 +134,7 @@ game: &1 !ruby/object:Board
       - 7
       - 1
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -142,7 +142,7 @@ game: &1 !ruby/object:Board
       - 8
       - 1
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
   - - !ruby/object:Tile
@@ -150,7 +150,7 @@ game: &1 !ruby/object:Board
       - 0
       - 2
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -158,7 +158,7 @@ game: &1 !ruby/object:Board
       - 1
       - 2
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -166,7 +166,7 @@ game: &1 !ruby/object:Board
       - 2
       - 2
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -174,7 +174,7 @@ game: &1 !ruby/object:Board
       - 3
       - 2
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -182,7 +182,7 @@ game: &1 !ruby/object:Board
       - 4
       - 2
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -190,7 +190,7 @@ game: &1 !ruby/object:Board
       - 5
       - 2
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -198,7 +198,7 @@ game: &1 !ruby/object:Board
       - 6
       - 2
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -206,7 +206,7 @@ game: &1 !ruby/object:Board
       - 7
       - 2
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -214,7 +214,7 @@ game: &1 !ruby/object:Board
       - 8
       - 2
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
   - - !ruby/object:Tile
@@ -222,7 +222,7 @@ game: &1 !ruby/object:Board
       - 0
       - 3
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -230,7 +230,7 @@ game: &1 !ruby/object:Board
       - 1
       - 3
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -238,7 +238,7 @@ game: &1 !ruby/object:Board
       - 2
       - 3
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -246,7 +246,7 @@ game: &1 !ruby/object:Board
       - 3
       - 3
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -254,7 +254,7 @@ game: &1 !ruby/object:Board
       - 4
       - 3
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -262,7 +262,7 @@ game: &1 !ruby/object:Board
       - 5
       - 3
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -270,7 +270,7 @@ game: &1 !ruby/object:Board
       - 6
       - 3
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -278,7 +278,7 @@ game: &1 !ruby/object:Board
       - 7
       - 3
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -286,7 +286,7 @@ game: &1 !ruby/object:Board
       - 8
       - 3
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
   - - !ruby/object:Tile
@@ -294,7 +294,7 @@ game: &1 !ruby/object:Board
       - 0
       - 4
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -302,7 +302,7 @@ game: &1 !ruby/object:Board
       - 1
       - 4
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -310,7 +310,7 @@ game: &1 !ruby/object:Board
       - 2
       - 4
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -318,7 +318,7 @@ game: &1 !ruby/object:Board
       - 3
       - 4
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -326,7 +326,7 @@ game: &1 !ruby/object:Board
       - 4
       - 4
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -334,7 +334,7 @@ game: &1 !ruby/object:Board
       - 5
       - 4
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -342,7 +342,7 @@ game: &1 !ruby/object:Board
       - 6
       - 4
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -350,7 +350,7 @@ game: &1 !ruby/object:Board
       - 7
       - 4
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -358,7 +358,7 @@ game: &1 !ruby/object:Board
       - 8
       - 4
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
   - - !ruby/object:Tile
@@ -366,7 +366,7 @@ game: &1 !ruby/object:Board
       - 0
       - 5
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -374,7 +374,7 @@ game: &1 !ruby/object:Board
       - 1
       - 5
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -382,7 +382,7 @@ game: &1 !ruby/object:Board
       - 2
       - 5
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -390,7 +390,7 @@ game: &1 !ruby/object:Board
       - 3
       - 5
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -398,7 +398,7 @@ game: &1 !ruby/object:Board
       - 4
       - 5
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -406,7 +406,7 @@ game: &1 !ruby/object:Board
       - 5
       - 5
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -414,7 +414,7 @@ game: &1 !ruby/object:Board
       - 6
       - 5
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -422,7 +422,7 @@ game: &1 !ruby/object:Board
       - 7
       - 5
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -430,7 +430,7 @@ game: &1 !ruby/object:Board
       - 8
       - 5
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
   - - !ruby/object:Tile
@@ -438,7 +438,7 @@ game: &1 !ruby/object:Board
       - 0
       - 6
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -446,7 +446,7 @@ game: &1 !ruby/object:Board
       - 1
       - 6
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -454,7 +454,7 @@ game: &1 !ruby/object:Board
       - 2
       - 6
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -462,7 +462,7 @@ game: &1 !ruby/object:Board
       - 3
       - 6
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -470,7 +470,7 @@ game: &1 !ruby/object:Board
       - 4
       - 6
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -478,7 +478,7 @@ game: &1 !ruby/object:Board
       - 5
       - 6
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -486,7 +486,7 @@ game: &1 !ruby/object:Board
       - 6
       - 6
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -494,7 +494,7 @@ game: &1 !ruby/object:Board
       - 7
       - 6
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -502,7 +502,7 @@ game: &1 !ruby/object:Board
       - 8
       - 6
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
   - - !ruby/object:Tile
@@ -510,7 +510,7 @@ game: &1 !ruby/object:Board
       - 0
       - 7
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -518,7 +518,7 @@ game: &1 !ruby/object:Board
       - 1
       - 7
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -526,7 +526,7 @@ game: &1 !ruby/object:Board
       - 2
       - 7
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -534,7 +534,7 @@ game: &1 !ruby/object:Board
       - 3
       - 7
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -542,7 +542,7 @@ game: &1 !ruby/object:Board
       - 4
       - 7
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -550,7 +550,7 @@ game: &1 !ruby/object:Board
       - 5
       - 7
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -558,7 +558,7 @@ game: &1 !ruby/object:Board
       - 6
       - 7
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -566,7 +566,7 @@ game: &1 !ruby/object:Board
       - 7
       - 7
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -574,7 +574,7 @@ game: &1 !ruby/object:Board
       - 8
       - 7
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
   - - !ruby/object:Tile
@@ -582,7 +582,7 @@ game: &1 !ruby/object:Board
       - 0
       - 8
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -590,7 +590,7 @@ game: &1 !ruby/object:Board
       - 1
       - 8
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -598,7 +598,7 @@ game: &1 !ruby/object:Board
       - 2
       - 8
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -606,7 +606,7 @@ game: &1 !ruby/object:Board
       - 3
       - 8
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -614,7 +614,7 @@ game: &1 !ruby/object:Board
       - 4
       - 8
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -622,7 +622,7 @@ game: &1 !ruby/object:Board
       - 5
       - 8
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -630,7 +630,7 @@ game: &1 !ruby/object:Board
       - 6
       - 8
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -638,7 +638,7 @@ game: &1 !ruby/object:Board
       - 7
       - 8
       board: *1
-      revealed: false
+      revealed: true
       flagged: false
       bombed: false
     - !ruby/object:Tile
@@ -648,4 +648,4 @@ game: &1 !ruby/object:Board
       board: *1
       revealed: false
       flagged: false
-      bombed: false
+      bombed: true

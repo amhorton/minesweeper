@@ -2,6 +2,9 @@ require 'yaml'
 
 class Minesweeper
 
+  class MinesweeperError < StandardError
+  end
+
   attr_reader :game
 
   def initialize
@@ -43,14 +46,35 @@ class Minesweeper
       end
     end
 
-    puts "Please enter X coordinate and then Y coordinate"
-    x = gets.chomp.to_i
-    y = gets.chomp.to_i
+    puts "Would you like to load? (y/n)"
+    if gets.chomp.downcase == "y"
+      loaded_game = YAML::load(File.read("saved_game.txt"))
+      loaded_game.play
+    end
 
-    coords = [x,y]
+    begin
+      puts "Please enter X coordinate and then Y coordinate"
+      x = gets.chomp.to_i
+      y = gets.chomp.to_i
 
-    puts "REVEAL or FLAG?"
-    choice = gets.chomp.downcase
+      raise MinesweeperError unless x < 8 && x > 0 && y < 8 && y > 0
+    rescue MinesweeperError
+      puts "Choose a valid number!"
+      make_move
+    end
+
+      coords = [x,y]
+
+    begin
+
+      puts "REVEAL or FLAG?"
+      choice = gets.chomp.downcase
+
+      raise MinesweeperError unless choice == "reveal" || choice == "flag"
+    rescue MinesweeperError
+      puts "Choose REVEAL or FLAG!"
+      make_move
+    end
 
     if choice == "reveal"
       @game.reveal(coords)
@@ -172,7 +196,7 @@ class Tile
     @flagged = false
     @bombed = false
     #a = [1,2,3,4,5,6,7,8].sample
-    @bombed = true if coords == [0,0]
+    @bombed = true if coords == [0,0] || coords == [8,8]
   end
 
   NEIGHBOR_COORDS = [[1,1],
@@ -218,14 +242,17 @@ class Tile
 
 end
 
-puts "Start a new game or load a saved game?"
+our_game = Minesweeper.new
+our_game.play
 
-if gets.chomp.downcase == "new game"
-  game = Minesweeper.new
-  game.play
-else
-  load_game = YAML::load(File.read("saved_game.txt"))
-end
+# puts "Start a new game or load a saved game?"
+#
+# if gets.chomp.downcase == "new game"
+#   game = Minesweeper.new
+#   game.play
+# else
+#   load_game = YAML::load(File.read("saved_game.txt"))
+# end
 
 # our_game = Minesweeper.new
 #
