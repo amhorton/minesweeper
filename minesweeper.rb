@@ -36,9 +36,14 @@ class Minesweeper
     coord = [x,y]
 
     puts "REVEAL or FLAG?"
-    choice = gets.chomp
+    choice = gets.chomp.downcase
 
-    move = [coord,choice]
+    if choice == "reveal"
+      @board.reveal(coord)
+    else
+      @board.flag(coord)
+    end
+
   end
 
   def won?
@@ -48,6 +53,8 @@ class Minesweeper
   def lost?
     #checks if any tiles that have bombs are revealed but not flagged
   end
+
+
 
 
 
