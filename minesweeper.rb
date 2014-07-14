@@ -40,7 +40,7 @@ class Tile
     NEIGHBOR.each do |neighbor|
       my_neighbors << [(self.coords.first - neighbor.first), (self.coords.last - neighbor.last)]
     end
-    my_neighbors.select { |coord| coord.any? { |num| num < 8 || num > 0 }
+    my_neighbors.select { |coord| coord.none? { |num| num > 8 || num < 0 }
     my_neighbors = my_neighbor.map { |coord| self.board.board.tile(coord) }
   end
 
