@@ -2,10 +2,11 @@ class Minesweeper
 
   def initialize
     @board = Board.new
+    @board.populate
   end
 
   def display
-    display_board = @board.map do |row|
+    display_board = @board.board.map do |row|
       row.map do |tile|
         if tile.flagged
           tile = :F
@@ -129,3 +130,7 @@ class Tile
   end
 
 end
+
+our_game = Minesweeper.new
+
+our_game.display
