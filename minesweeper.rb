@@ -10,6 +10,7 @@ class Minesweeper
   def initialize
     @game = Board.new
     @game.populate
+    @leaderboard = []
   end
 
   def display
@@ -57,7 +58,7 @@ class Minesweeper
       x = gets.chomp.to_i
       y = gets.chomp.to_i
 
-      raise MinesweeperError unless x < 8 && x > 0 && y < 8 && y > 0
+      raise MinesweeperError unless x <= 8 && x >= 0 && y <= 8 && y >= 0
     rescue MinesweeperError
       puts "Choose a valid number!"
       make_move
@@ -115,6 +116,8 @@ class Minesweeper
 
   def play
 
+    begin_time = Time.now
+
     until won? || lost?
       display
       make_move
@@ -128,6 +131,21 @@ class Minesweeper
       puts "You lose :("
     end
 
+    end_time = Time.now
+
+    total_time = end_time - begin_time
+
+    @leaderboard << total_time
+
+    puts "Total Game Time: #{total_time} seconds!"
+
+    puts "Fastest time is #{@leaderboard.sort.first}!"
+
+    puts "Play again? (y/n)"
+
+    if gets.chomp == "y"
+      @board = Board.new
+      self.play
     nil
   end
 
@@ -137,8 +155,11 @@ class Board
 
   attr_accessor :board
 
-  def initialize(board_dimension = 9)
+  attr_reader :difficulty
+
+  def initialize(board_dimension = 9, difficulty)
     @board = Array.new(board_dimension) { Array.new(board_dimension)}
+    @difficulty = difficulty
   end
 
   def tile(coords)
@@ -195,8 +216,18 @@ class Tile
     @revealed = false
     @flagged = false
     @bombed = false
-    #a = [1,2,3,4,5,6,7,8].sample
-    @bombed = true if coords == [0,0] || coords == [8,8]
+
+    if board.difficulty == "Expert"
+      a = [1,2,3,4].sample
+      @bombed = true if a == 6
+    elsif board.difficulty == "Medium"
+      a = [1,2,3,4,5,6].sample
+      @bombed = true if a == 6
+    else
+      a = [1,2,3,4,5,6,7,8].sample
+      @bombed = true if a == 6
+    end
+
   end
 
   NEIGHBOR_COORDS = [[1,1],
