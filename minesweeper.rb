@@ -1,5 +1,10 @@
 class Minesweeper
 
+  def play
+  end
+
+
+
 end
 
 class Board
@@ -15,8 +20,8 @@ class Board
   end
 
   def populate
-    @board.each do |rows|
-      @board.each do |cols|
+    @board.each_index do |rows|
+      @board.each_index do |cols|
        @board[cols][rows] = Tile.new(self, [cols,rows])
       end
     end
@@ -68,7 +73,7 @@ class Tile
       my_neighbors << [(self.coords.first - neighbor.first), (self.coords.last - neighbor.last)]
     end
 
-    my_neighbors.select { |coord| coord.none? { |num| num > 8 || num < 0 }
+    my_neighbors.select { |coord| coord.none? { |num| num > 8 || num < 0 }}
 
     my_neighbors = my_neighbors.map { |coord| self.board.tile(coord) }
   end
@@ -83,6 +88,10 @@ class Tile
     end
 
     adj_bombs
+  end
+
+  def bomb_adjacent?
+    self.neighbors.any? { |neighbor| neighbord.bombed }
   end
 
 end
