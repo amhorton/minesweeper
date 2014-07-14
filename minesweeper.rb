@@ -14,6 +14,14 @@ class Board
     @board[coords.last][coords.first]
   end
 
+  def populate
+    @board.each do |rows|
+      @board.each do |cols|
+       @board[cols][rows] = Tile.new(self, [cols,rows])
+      end
+    end
+  end
+
 
 end
 
