@@ -1,5 +1,7 @@
 class Minesweeper
 
+  attr_reader :game
+
   def initialize
     @game = Board.new
     @game.populate
@@ -11,7 +13,7 @@ class Minesweeper
         if tile.flagged
           tile = :F
         elsif tile.revealed
-          if tile.bombed?
+          if tile.bombed
             tile = :B
           elsif tile.bomb_adjacent?
             tile = tile.neighbor_bomb_count
@@ -117,7 +119,33 @@ class Board
   end
 
   def reveal(coords)
-    @board[coords[1]][coords[0]].revealed = true
+    self.board[coords[1]][coords[0]].revealed = true
+
+    queue = [self.board[coords[1]][coords[0]]]
+
+    until queue.empty?
+      current = queue.shift
+
+      if current.bomb_adjacent? || current.flag_adjacent?
+        current.revealed = true
+      else
+        current.revealed = true
+        queue += current.neighbors
+      end
+
+
+    # @board[coords[1]][coords[0]].revealed = true
+  #
+  #   current_tile = @board[coords[1]][coords[0]]
+  #
+  #   if current_tile.bomb_adjacent?
+  #     p "found adjacent bomb"
+  #     return
+  #   else
+  #     current_tile.neighbors.each do |neighbor|
+  #       reveal(neighbor.coords)
+  #     end
+  #   end
   end
 
   def flag(coords)
@@ -128,7 +156,7 @@ end
 
 class Tile
 
-  attr_accessor :flagged, :revealed
+  attr_accessor :flagged, :revealed, :coords, :board
 
   attr_reader :bombed
 
@@ -138,7 +166,7 @@ class Tile
     @revealed = false
     @flagged = false
     @bombed = false
-    a = [1,2,3,4].sample
+    a = [1,2,3,4,5,6].sample
     @bombed = true if a == 1
   end
 
@@ -151,9 +179,6 @@ class Tile
               [-1,1],
               [1,-1]
             ]
-
-
-
   def neighbors
     my_neighbors = []
 
@@ -170,7 +195,7 @@ class Tile
     adj_bombs = 0
 
     self.neighbors.each do |neighbor|
-      if neighbor.bombed?
+      if neighbor.bombed
         adj_bombs += 1
       end
     end
@@ -179,11 +204,19 @@ class Tile
   end
 
   def bomb_adjacent?
-    self.neighbors.any? { |neighbor| neighbord.bombed }
+    self.neighbors.any? { |neighbor| neighbor.bombed }
+  end
+
+  def flag_adjacent?
+    self.neighbors.any? { |neighbor| neighbor.flagged }
   end
 
 end
 
 our_game = Minesweeper.new
+
+our_game.display
+
+our_game.game.reveal([1,2])
 
 our_game.display
