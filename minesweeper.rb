@@ -76,14 +76,7 @@ class Minesweeper
     lost
   end
 
-
-
-
-
-
-
   def play
-
 
 
 
@@ -107,53 +100,39 @@ class Board
   end
 
   def tile(coords)
-    p @board[coords.last] == nil
     @board[coords.last][coords.first]
   end
 
   def populate
-    @board.each_index do |rows|
-      @board.each_index do |cols|
-       @board[cols][rows] = Tile.new(self, [cols,rows])
+    @board.each_index do |rows_index|
+      @board[rows_index].each_index do |cols_index|
+       @board[rows_index][cols_index] = Tile.new(self, [cols_index,rows_index])
       end
     end
   end
 
-  def reveal(coords,all_seen_tiles = [])
-    # self.board[coords[1]][coords[0]].revealed = true
-#
-#     queue = [self.board[coords[1]][coords[0]]]
-#
-#     all_seen_tiles = []
-#
-#     until queue.empty?
-#       current = queue.shift
-#
-#       if current.bomb_adjacent? || current.flag_adjacent?
-#         current.revealed = true
-#         all_seen_tiles << current
-#         p all_seen_tiles
-#       else
-#         current.revealed = true
-#         all_seen_tiles << current
-#         p all_seen_tiles
-#         queue += current.neighbors.select { |tile| !all_seen_tiles.include?(tile) }
-#       end
-#     end
+  def reveal(coords)
 
-    current_tile = @board[coords[1]][coords[0]]
+    current = self.board[coords[1]][coords[0]]
 
-    if current_tile.bomb_adjacent? || current_tile.flag_adjacent?
-      current_tile.revealed = true
-      all_seen_tiles << current_tile
-      return
-    else
-      current_tile.revealed = true
-      all_seen_tiles << current_tile
-      current_tile.neighbors.each do |neighbor|
-        reveal(neighbor.coords,all_seen_tiles)
+    all_seen_tiles = []
+
+    queue = [current]
+
+    until queue.empty?
+
+      current = queue.shift
+
+      if current.bomb_adjacent? || current.flag_adjacent?
+        current.revealed = true
+        all_seen_tiles << current
+      else
+        current.revealed = true
+        queue += current.neighbors.select {|tile| !tile.revealed}
       end
+
     end
+
   end
 
   def flag(coords)
@@ -174,11 +153,11 @@ class Tile
     @revealed = false
     @flagged = false
     @bombed = false
-    a = [1,2,3,4,5,6].sample
-    @bombed = true if a == 1
+    a = [1,2,3,4,5,6,7,8].sample
+    @bombed = true if a == 6
   end
 
-  NEIGHBOR = [[1,1],
+  NEIGHBOR_COORDS = [[1,1],
               [0,1],
               [-1,-1],
               [0,-1],
@@ -190,7 +169,7 @@ class Tile
   def neighbors
     my_neighbors = []
 
-    NEIGHBOR.each do |neighbor|
+    NEIGHBOR_COORDS.each do |neighbor|
       my_neighbors << [(self.coords.first - neighbor.first), (self.coords.last - neighbor.last)]
     end
 
@@ -223,6 +202,8 @@ end
 
 our_game = Minesweeper.new
 
-our_game.game.reveal([1,2])
+our_game.game.reveal([4,4])
 
 our_game.display
+
+#p our_game.game.tile([4,5]).neighbor_bomb_count
