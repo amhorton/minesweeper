@@ -8,8 +8,7 @@ class Minesweeper
   attr_reader :game
 
   def initialize
-    @game = Board.new
-    @game.populate
+    @game = nil
     @leaderboard = []
   end
 
@@ -116,6 +115,21 @@ class Minesweeper
 
   def play
 
+    begin
+      puts "What difficulty? (expert, medium, or easy)"
+      difficulty = gets.chomp.downcase
+
+      puts "board size?"
+      board_size = gets.chomp.to_i
+      raise MinesweeperError if board_size <= 0 || board_size > 30
+    rescue MinesweeperError
+      puts "That board size? Really? Let's be reasonable."
+      self.play
+    end
+
+    @game = Board.new(board_size, difficulty)
+    @game.populate
+
     begin_time = Time.now
 
     until won? || lost?
@@ -146,6 +160,8 @@ class Minesweeper
     if gets.chomp == "y"
       @board = Board.new
       self.play
+    end
+
     nil
   end
 
@@ -157,7 +173,7 @@ class Board
 
   attr_reader :difficulty
 
-  def initialize(board_dimension = 9, difficulty)
+  def initialize(board_dimension = 9, difficulty = 'easy')
     @board = Array.new(board_dimension) { Array.new(board_dimension)}
     @difficulty = difficulty
   end
@@ -217,10 +233,10 @@ class Tile
     @flagged = false
     @bombed = false
 
-    if board.difficulty == "Expert"
+    if board.difficulty == "expert"
       a = [1,2,3,4].sample
       @bombed = true if a == 6
-    elsif board.difficulty == "Medium"
+    elsif board.difficulty == "medium"
       a = [1,2,3,4,5,6].sample
       @bombed = true if a == 6
     else
