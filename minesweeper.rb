@@ -28,7 +28,34 @@ class Minesweeper
 
   end
 
+  def make_move
+    puts "Please enter X coordinate and then Y coordinate: "
+    x = gets.chomp
+    y = gets.chomp
+
+    coord = [x,y]
+
+    puts "REVEAL or FLAG?"
+    choice = gets.chomp
+
+    move = [coord,choice]
+  end
+
+  def won?
+    #checks if all tiles that have a bomb are flagged
+  end
+
+  def lost?
+    #checks if any tiles that have bombs are revealed but not flagged
+  end
+
+
+
+
+
   def play
+
+
 
 
 
