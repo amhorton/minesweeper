@@ -16,7 +16,7 @@ class Minesweeper
           if tile.bombed
             tile = :B
           elsif tile.bomb_adjacent?
-            tile = tile.neighbor_bomb_count
+            tile = tile.neighbor_bomb_count.to_s.to_sym
           else
             :_
           end
@@ -123,15 +123,20 @@ class Board
 
     queue = [self.board[coords[1]][coords[0]]]
 
+    all_seen_tiles = []
+
     until queue.empty?
       current = queue.shift
 
       if current.bomb_adjacent? || current.flag_adjacent?
         current.revealed = true
+        all_seen_tiles << current
       else
         current.revealed = true
-        queue += current.neighbors
+        all_seen_tiles << current
+        queue += current.neighbors.select { |tile| !all_seen_tiles.include?(tile) }
       end
+    end
 
 
     # @board[coords[1]][coords[0]].revealed = true
@@ -186,7 +191,7 @@ class Tile
       my_neighbors << [(self.coords.first - neighbor.first), (self.coords.last - neighbor.last)]
     end
 
-    my_neighbors.select { |coord| coord.none? { |num| num > 8 || num < 0 }}
+    my_neighbors.select { |coord| coord.none? { |num| num > 9 || num < 0 }}
 
     my_neighbors = my_neighbors.map { |coord| self.board.tile(coord) }
   end
@@ -214,8 +219,6 @@ class Tile
 end
 
 our_game = Minesweeper.new
-
-our_game.display
 
 our_game.game.reveal([1,2])
 
