@@ -1,12 +1,12 @@
 class Minesweeper
 
   def initialize
-    @board = Board.new
-    @board.populate
+    @game = Board.new
+    @game.populate
   end
 
   def display
-    display_board = @board.board.map do |row|
+    display_board = @game.board.map do |row|
       row.map do |tile|
         if tile.flagged
           tile = :F
@@ -39,15 +39,16 @@ class Minesweeper
     choice = gets.chomp.downcase
 
     if choice == "reveal"
-      @board.reveal(coord)
+      @game.board.reveal(coord)
     else
-      @board.flag(coord)
+      @game.board.reveal(coord)
     end
 
   end
 
   def won?
     #checks if all tiles that have a bomb are flagged
+    @game.board
   end
 
   def lost?
@@ -96,12 +97,21 @@ class Board
     end
   end
 
+  def reveal(coords)
+    @board[coords[1]][coords[0]].revealed = true
+  end
+
+  def flag(coords)
+    @board[coords[1]][coords[0]].flagged = true
+  end
 
 end
 
 class Tile
 
-  attr_accessor :bombed, :flagged, :revealed
+  attr_accessor :flagged, :revealed
+
+  attr_reader :bombed
 
   def initialize(board, coords)
     @coords = coords
@@ -123,17 +133,7 @@ class Tile
               [1,-1]
             ]
 
-  # def reveal
-#     @revealed = true
-#   end
-#
-#   def flag
-#     @flagged = true
-#   end
 
-  # def bomb
-#     #@bomb = true
-#   end
 
   def neighbors
     my_neighbors = []
