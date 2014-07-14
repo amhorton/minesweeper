@@ -34,8 +34,14 @@ class Minesweeper
 
   def make_move
     puts "Would you like to save? (y/n)"
-    if gets.chomp.downcase == y
-      self.to_ya
+    if gets.chomp.downcase == "y"
+      saved_game = self.to_yaml
+
+      File.open("saved_game.txt","w") do |f|
+        f.print saved_game
+        return
+      end
+    end
 
     puts "Please enter X coordinate and then Y coordinate"
     x = gets.chomp.to_i
@@ -212,8 +218,17 @@ class Tile
 
 end
 
-our_game = Minesweeper.new
+puts "Start a new game or load a saved game?"
 
-our_game.play
+if gets.chomp.downcase == "new game"
+  game = Minesweeper.new
+  game.play
+else
+  load_game = YAML::load(File.read("saved_game.txt"))
+end
+
+# our_game = Minesweeper.new
+#
+# our_game.play
 
 #p our_game.game.tile([4,5]).neighbor_bomb_count
