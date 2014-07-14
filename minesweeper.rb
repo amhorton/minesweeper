@@ -1,6 +1,40 @@
 class Minesweeper
 
+  def initialize
+    @board = Board.new
+  end
+
+  def display
+    display_board = @board.map do |row|
+      row.map do |tile|
+        if tile.flagged
+          tile = :F
+        elsif tile.revealed
+          if tile.bombed?
+            tile = :B
+          elsif tile.bomb_adjacent?
+            tile = tile.neighbor_bomb_count
+          else
+            :_
+          end
+        else
+          tile = :*
+        end
+      end
+    end
+
+    p display_board
+
+  end
+
   def play
+
+
+
+
+
+
+
   end
 
 
@@ -32,7 +66,7 @@ end
 
 class Tile
 
-  attr_accessor :bombed, :flag, :reveal
+  attr_accessor :bombed, :flagged, :revealed
 
   def initialize(board, coords)
     @coords = coords
@@ -54,13 +88,13 @@ class Tile
               [1,-1]
             ]
 
-  def reveal
-    @revealed = true
-  end
-
-  def flag
-    @flagged = true
-  end
+  # def reveal
+#     @revealed = true
+#   end
+#
+#   def flag
+#     @flagged = true
+#   end
 
   # def bomb
 #     #@bomb = true
