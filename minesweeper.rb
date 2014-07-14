@@ -41,18 +41,37 @@ class Minesweeper
     if choice == "reveal"
       @game.board.reveal(coord)
     else
-      @game.board.reveal(coord)
+      @game.board.flag(coord)
     end
 
   end
 
   def won?
-    #checks if all tiles that have a bomb are flagged
-    @game.board
+    won = true
+
+    @game.board.each do |row|
+      row.each do |tile|
+        if tile.bombed && !tile.flagged
+          won = false
+        end
+      end
+    end
+
+    won
   end
 
   def lost?
-    #checks if any tiles that have bombs are revealed but not flagged
+    lost = false
+
+    @game.board.each do |row|
+      row.each do |tile|
+        if tile.revealed && tile.bombed
+          lost = true
+        end
+      end
+    end
+
+    lost
   end
 
 
